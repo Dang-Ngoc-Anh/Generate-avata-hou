@@ -1,27 +1,32 @@
 import React from 'react'
 import './box.css'
-import { Link, Navigate } from 'react-router-dom'
+import { Link , useNavigate } from 'react-router-dom'
+import axios from 'axios';
 export const Box = ({props}) => {
   const {
-    name , dayPost , image , role
-  } = props;
+    id, userId,name , image , description ,createdAt
+  } =  props;
 
+  const navigate = useNavigate();
+  
   const handleClick = (e)=>{
-    // e.preventDefault();
-    
+    e.preventDefault();
+    navigate(`/create-avata/${id}`)
   }
   return (
     <div className='item'>
         <div className='img__box'>
-            <img src={image} alt=''></img>
+            <img src={`http://localhost:4000/${image}`} alt='load img err'></img>
         </div>
         <div className='user__infor'>
-            <p>Họ tên : {name}</p>
-            <p>Chức vụ: {role}</p>
-            <p>Ngày đăng : {dayPost}</p>
+            <p>Họ tên : {userId}</p>
+            <p>Name: {name}</p>
+            <p>description: {description}</p>
+            <p>Ngày đăng : {createdAt}</p>
         </div>
-            <button className='btn-test'>
-                <Link to="/create-avata" onClick={handleClick}>Lấy mẫu</Link>
+            <button className='btn-test' onClick={handleClick}>
+                {/* <Link to={`/create-avata${id}`} onClick={handleClick}>Lấy mẫu</Link> */}
+                Lấy mẫu
             </button>
     </div>
   )

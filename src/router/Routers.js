@@ -12,6 +12,7 @@ const Routers = () => {
       <Route path="/home" element={<Home />} />
       <Route path="/create-frame" element={<Frame />} />
       <Route path="/create-avata" element={<CreateAvata />} />
+      <Route path="/create-avata/:id" element={<CreateAvata />} />
       <Route path="/home/custem" element={<FixSizeImg />} />
       <Route path="/login" element={<Login />} />
     </Routes>

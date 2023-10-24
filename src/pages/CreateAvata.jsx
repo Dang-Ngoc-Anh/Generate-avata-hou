@@ -1,13 +1,18 @@
-import React,{useState , useEffect , useRef , createRef} from 'react'
+import React,{useState , useEffect , useRef , createRef } from 'react'
 import '../styles/create-avata.css'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Cropper from "react-cropper";
 import "../styles/fix-size.css"
 import "../../node_modules/cropperjs/dist/cropper.css"
+import { useParams } from 'react-router-dom';
 const CreateAvata = () => {
     const [selectedFile, setSelectedFile] = useState()
     const [preview, setPreview] = useState()
     const [data , setData] = useState('./child.jpg');
+    const {id} = useParams();
+    const navigate = useNavigate();
+    console.log("id" + id);
     // create a preview as a side effect, whenever selected file is changed
     useEffect(() => {
         if (!selectedFile) {
@@ -23,6 +28,8 @@ const CreateAvata = () => {
     }, [selectedFile])
 
 
+
+   
     const canvasRef = useRef(null);
       useEffect(() => {
         const canvas = canvasRef.current;
@@ -67,18 +74,22 @@ const CreateAvata = () => {
       }
       const [cropData, setCropData] = useState();
       const cropperRef = createRef();
-      const onCrop = () => {
-            setCropData(cropperRef.current?.cropper.getCroppedCanvas().toDataURL("image/png"));
+      const onCrop = async() => {
+             setCropData(cropperRef.current?.cropper.getCroppedCanvas().toDataURL("image/png"));
       };
-      const saveCrop = ()=>{
-        const a = document.createElement('a');
-        a.href = cropData;
-        a.download = 'dowload.png';
-        a.click();
+      const saveCrop = async(e)=>{
+          const a = document.createElement('a');
+          a.href = cropData;
+          a.download = 'dowload.png';
+          a.click();
       }
+
+      useEffect(()=>{
+        const url = `http://localhost:4000/api/v1/frame/upload/${id}`
+        id ? axios.get(url).then(res => setData(`http://localhost:4000/${res.data.data.image}`)) : navigate('/create-avata')
+      }) 
       // gửi data canvas lên url
   return (
-    <form>
     <div className='container__avata'>
       <div className='img-container'  >
         <Cropper 
@@ -97,6 +108,7 @@ const CreateAvata = () => {
             autoCropArea={1}
             checkOrientation={false} 
             guides={true}
+            zoomable={false}
             crop={onCrop}
             className='cropper'
         />
@@ -129,10 +141,9 @@ const CreateAvata = () => {
               accept='image/*'
               onChange={onSelectFileFrame}
               />
-            <button className='btn-success' onClick={saveCrop}>Save</button>
+            <button type='submit' className='btn-success' onClick={saveCrop}>Save</button>
        </div>
     </div>
-    </form>
 
   )
 }

@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "../styles/home.css"
 import { Box } from '../components/Box/Box'
-import data from '../data/User.json'
+// import data from '../data/User.json'
 import CustemInput from '../components/Custeminput/CustemInput'
+import axios from 'axios'
 const Home = () => {
+  const [frame , setFrame] = useState([]);
+  const [loading , setLoading] = useState(false);
+  const url = "http://localhost:4000/api/v1/frame/upload";
+ useEffect(()=>{
+  axios
+        .get(url)
+        .then((res) => {
+            setFrame(res.data.data)
+        })
+        .catch(err => {alert(err)});
+ } ,[])
+
   return (
     <>
         {/* <CustemInput 
@@ -14,7 +27,7 @@ const Home = () => {
         {/* Trang chu , generate avata , contact  */}
         
       <div className='container'>
-        {data.map(user => <Box props={user}/>)}
+        {frame.map(user => <Box props={user}/>) }
     </div>
     </>
     
