@@ -5,23 +5,7 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
 }
 
-.search__input{
-  bottom: 1rem;
-  border: 2px solid rgb(118, 118, 118);
-  border-radius: 1rem;
-  width: 70rem;
-  outline: none;
-  font-size: 1.2rem;
-  transition: cubic-bezier(0.165, 0.84, 0.44, 1) 0.5s;
-  margin: auto;
-  display: flex;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  padding: 1.2rem;
-}
-.search__input:focus{
-  border:2px solid var(--secondary-color); ;
-}
+
 
 
 @media only screen and (max-width: 1020px) {

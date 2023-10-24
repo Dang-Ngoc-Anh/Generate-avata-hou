@@ -5,7 +5,7 @@ const Footer = () => {
    <>
    
 <footer class="footer">
-  <div class="footer__addr">
+  {/* <div class="footer__addr">
     <h1 class="footer__logo">Something</h1>
         
     <h2>Contact</h2>
@@ -90,7 +90,8 @@ const Footer = () => {
     <div class="legal__links">
       <span>Made with <span class="heart">♥</span> remotely from Anywhere</span>
     </div>
-  </div>
+  </div> */}
+  <p id="ft-text">Trường Đại học Mở Hà Nội</p>
 </footer>
    </>
   )

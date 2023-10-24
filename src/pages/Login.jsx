@@ -6,7 +6,7 @@ const Login = () => {
     <form action='' method=''>
       <div className='login'>
         <div className='logo'>
-          <img src='./logo.svg' alt="loi" />
+          <img src='./logo_hou.png' alt="loi" />
         </div>
           <CustemInput
             type="email"

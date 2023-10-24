@@ -1,14 +1,21 @@
 .footer {
     display: flex;
     flex-flow: row wrap;
-    padding: 30px 30px 20px 30px;
+    padding: 20px 20px 20px 20px;
     color: #2f2f2f;
-    background-color: var(--primary-color);
+    background-color: #EFEEEE;
     border-top: 1px solid #e5e5e5;
     margin-top: 3rem;
     color: white;
   }
   
+#ft-text {
+  text-align: center;
+  font-size: 12pt;
+  color: black;
+  font-weight: bold;
+}
+
   .footer > * {
     flex:  1 100%;
   }
